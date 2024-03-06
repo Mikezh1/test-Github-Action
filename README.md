@@ -1,2 +1,2 @@
-# test-Github-Action
-use Github Action to run a python script
+# test-Github-Actions
+use Github Actions to run a python script
