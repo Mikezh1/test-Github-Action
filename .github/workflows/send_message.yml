@@ -2,23 +2,26 @@ name: Send Feishu Message
 
 on:
   schedule:
-    - cron: "0,30 * * * *"  # Schedule the workflow to run every half hour
+    - cron: "0,30 * * * *"  # Schedule the workflow to run at the start and half of every hour
 
 jobs:
   send_message:
-    runs-on: ubuntu-latest  # Use the latest version of Ubuntu as the execution environment
+    runs-on: ubuntu-latest  # Use the latest Ubuntu version for the runner
     
     steps:
-    - name: Checkout repository  # Step to checkout the repository
-      uses: actions/checkout@v2
+    - name: Checkout repository  # Checkout the code from the repository
+      uses: actions/checkout@v3 # Ensure to use an updated version compatible with Node.js 20
 
-    - name: Set up Python  # Step to set up Python environment
-      uses: actions/setup-python@v2
+    - name: Set up Python  # Setup the Python environment
+      uses: actions/setup-python@v3 # Use an updated version compatible with Node.js 20
       with:
-        python-version: '3.x'  # Specify Python version as 3.x
+        python-version: '3.x'  # Specify the Python version to use
 
-    - name: Install dependencies  # Step to install dependencies if any
-      run: pip install -r requirements.txt  # Install dependencies if any. Make sure to install them by referring to requirements.txt file
+    - name: Install dependencies  # Install required dependencies
+      run: pip install -r requirements.txt  # Install packages specified in requirements.txt
 
-    - name: Run Python script  # Step to run Python script
-      run: python get_beijing_time_and_send.py  # Run the Python script named get_beijing_time_and_send.py
+    - name: Run Python script  # Execute the Python script
+      run: python get_beijing_time_and_send.py  # Replace with your Python script's name
+
+# Make sure to check the GitHub Actions documentation for the latest versions of actions/checkout and actions/setup-python to ensure compatibility with Node.js 20.
+# Also, confirm that your repository contains the get_beijing_time_and_send.py script and a properly configured requirements.txt file listing all necessary dependencies.
