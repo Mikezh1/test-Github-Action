@@ -1,0 +1,24 @@
+name: Send Feishu Message
+
+on:
+  schedule:
+    - cron: "0,30 * * * *"  # Schedule the workflow to run every half hour
+
+jobs:
+  send_message:
+    runs-on: ubuntu-latest  # Use the latest version of Ubuntu as the execution environment
+    
+    steps:
+    - name: Checkout repository  # Step to checkout the repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python  # Step to set up Python environment
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'  # Specify Python version as 3.x
+
+    - name: Install dependencies  # Step to install dependencies if any
+      run: pip install -r requirements.txt  # Install dependencies if any. Make sure to install them by referring to requirements.txt file
+
+    - name: Run Python script  # Step to run Python script
+      run: python get_beijing_time_and_send.py  # Run the Python script named get_beijing_time_and_send.py
